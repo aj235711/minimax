@@ -24,34 +24,61 @@ const useData = () => {
     classes,
   };
 
-  const isFinished = () => {
+  const minimize = (mat) => {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (mat[i][j] === -1) {
+          const copy = [...mat];
+          copy[i][j] = "O";
+        }
+      }
+    }
+  };
+
+  const isFinished = (mat) => {
     for (let i = 0; i < 3; i++) {
       if (
-        matrix[i][0] === matrix[i][1] &&
-        matrix[i][1] === matrix[i][2] &&
-        matrix[i][0] !== -1
+        mat[i][0] === mat[i][1] &&
+        mat[i][1] === mat[i][2] &&
+        mat[i][0] !== -1
       ) {
-        console.log("done");
+        if (mat[i][0] === "X") {
+          return 1;
+        } else {
+          return -1;
+        }
       } else if (
-        matrix[0][i] === matrix[1][i] &&
-        matrix[1][i] === matrix[2][i] &&
-        matrix[0][i] !== -1
+        mat[0][i] === mat[1][i] &&
+        mat[1][i] === mat[2][i] &&
+        mat[0][i] !== -1
       ) {
-        console.log("done");
+        if (mat[0][i] === "X") {
+          return 1;
+        } else {
+          return -1;
+        }
       }
     }
     if (
-      matrix[0][0] === matrix[1][1] &&
-      matrix[1][1] === matrix[2][2] &&
-      matrix[0][0] !== -1
+      mat[0][0] === mat[1][1] &&
+      mat[1][1] === mat[2][2] &&
+      mat[0][0] !== -1
     ) {
-      console.log("done");
+      if (mat[0][0] === "X") {
+        return 1;
+      } else {
+        return -1;
+      }
     } else if (
-      matrix[0][2] === matrix[1][1] &&
-      matrix[1][1] === matrix[2][0] &&
-      matrix[0][2] !== -1
+      mat[0][2] === mat[1][1] &&
+      mat[1][1] === mat[2][0] &&
+      mat[0][2] !== -1
     ) {
-      console.log("done");
+      if (mat[0][2] === "X") {
+        return 1;
+      } else {
+        return -1;
+      }
     }
   };
 
